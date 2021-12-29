@@ -25,6 +25,6 @@ class Shop extends Model
 
     public function product()
     {
-        return $this->hasMany(Pricust::class);
+        return $this->hasMany(Product::class);
     }
 }
