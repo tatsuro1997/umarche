@@ -86,22 +86,19 @@ class CartController extends Controller
                     'quantity' => $product->pivot->quantity * -1,
                 ]);
             }
-
-            dd('test');
-
-
         }
+
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [$lineItems],
-            'mode' => ['payment'],
+            'mode' => 'payment',
             'success_url' => route('user.items.index'),
             'cancel_url' => route('user.cart.index'),
         ]);
 
-        $qublicKey = env('STRIPE_PUBLIC_KEY');
+        $publicKey = env('STRIPE_PUBLIC_KEY');
 
         return view('user.checkout', compact('session', 'publicKey'));
     }
