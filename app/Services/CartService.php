@@ -9,8 +9,6 @@ class CartService{
   {
     $products = [];
 
-    // dd($items);
-
     foreach ($items as $item)
     {
       $p = Product::findOrFail($item->product_id);
